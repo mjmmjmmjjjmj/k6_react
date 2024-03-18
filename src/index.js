@@ -6,10 +6,10 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <App /> 
-    {/* <!--사용자 정의 태그=대문자로 시작함 = 컴포넌트 .js가 확장자임> */}
-  </React.StrictMode>
+    // {/* <!--사용자 정의 태그=대문자로 시작함 = 컴포넌트 .js가 확장자임> */}
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
