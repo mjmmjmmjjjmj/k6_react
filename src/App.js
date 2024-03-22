@@ -5,8 +5,13 @@ import { LuHome } from "react-icons/lu";
 import MyDiv1 from './03/03_1/MyDiv1';
 // import MyList from './04/MyList';
 import MyListMain from './04/MyListMain';
-
 import './App.css';
+import BoxOfficeTb from './05/BoxOfficeTb';
+import Lotto2 from './06/Lotto2';
+import FoodMain from './07/FoodMain'
+import MyClock from './08/MyClock';
+import TrafficMain from './09/TrafficMain';
+
 
 function App() {
 
@@ -40,7 +45,13 @@ function App() {
                       >
         {/* <HelloCss /> */}
         {/* <MyDiv1 /> */}
-        <MyListMain />
+        {/* <MyListMain /> */}
+        {/* <BoxOfficeTb /> */}
+        {/* <Lotto2 /> */}
+        {/* <FoodMain />/ */}
+        {/* <MyClock /> */}
+        <TrafficMain />
+
 
       </main>
       <footer className='flex justify-center items-center
