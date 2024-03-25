@@ -5,7 +5,7 @@ export default function Tailbutton2({caption, color, handleClick}) {
     const colorObj = {
         'blue' : 'bg-blue-800',
         'red' : 'bg-red-800',
-        'orange' : 'bg-orange-7800'
+        'orange' : 'bg-orange-700'
     }
 
     const hoverObj = {
