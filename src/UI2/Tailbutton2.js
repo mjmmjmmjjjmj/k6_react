@@ -3,7 +3,7 @@ export default function Tailbutton2({caption, color, handleClick}) {
 
 
     const colorObj = {
-        'blue' : 'bg-blue-800',
+        'blue' : 'bg-blue-700',
         'red' : 'bg-red-800',
         'orange' : 'bg-orange-700'
     }
@@ -14,7 +14,7 @@ export default function Tailbutton2({caption, color, handleClick}) {
         'orange' : 'hover:bg-orange-600'
     }
     
-    const bColor = `px-4 py-2 m-2 rounded-md 
+    const bColor = `w-full px-4 py-2 m-2 rounded-md 
                     ${colorObj[color]} ${hoverObj[color]} 
                     text-white`;
 
