@@ -6,11 +6,15 @@ import MyDiv1 from './03/03_1/MyDiv1';
 // import MyList from './04/MyList';
 import MyListMain from './04/MyListMain';
 import './App.css';
-import BoxOfficeTb from './05/BoxOfficeTb';
+import BoxOfficeTb from './05_1/BoxOfficeTb';
 import Lotto2 from './06/Lotto2';
 import FoodMain from './07/FoodMain'
 import MyClock from './08/MyClock';
 import TrafficMain from './09/TrafficMain';
+import RefVal from './10/RefVal';
+import RefInput from './10/RefInput';
+import GCard from './11/GCard';
+import Gmain from './11/Gmain';
 
 
 function App() {
@@ -34,7 +38,7 @@ function App() {
       
       <header className='flex justify-between
                         h-20 p-10 
-                        text-xl front-bold text-blue-800
+                        text-xl font-bold text-blue-800
                         bg-slate-200'>
         <div>리액트실습</div>
         <div><LuHome /></div>
@@ -46,11 +50,16 @@ function App() {
         {/* <HelloCss /> */}
         {/* <MyDiv1 /> */}
         {/* <MyListMain /> */}
-        {/* <BoxOfficeTb /> */}
         {/* <Lotto2 /> */}
         {/* <FoodMain />/ */}
         {/* <MyClock /> */}
-        <TrafficMain />
+        {/* <TrafficMain /> */}
+        {/* <RefVal /> */}
+        {/* <BoxOfficeTb /> */}
+        {/* <GCard/> */}
+        <Gmain/>
+        
+        
 
 
       </main>
