@@ -1,7 +1,7 @@
 import MainHeader from './01/MainHeader';
 import Hello from './01/Hello';
 import HelloCss from './02/HelloCss';
-import { LuHome } from "react-icons/lu";
+import { IoIosHome } from "react-icons/io";
 import MyDiv1 from './03/03_1/MyDiv1';
 // import MyList from './04/MyList';
 import MyListMain from './04/MyListMain';
@@ -43,7 +43,7 @@ function App() {
                         text-xl font-bold text-blue-800
                         bg-slate-200'>
         <div>리액트실습</div>
-        <div><LuHome /></div>
+        <div><IoIosHome /></div>
 
       </header>
       <main className='grow flex flex-col 
