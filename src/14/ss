@@ -1,0 +1,19 @@
+ //실제 fetch
+    const getData = (url) => {
+        fetch(url)
+        .then(resp => resp.json())
+        .then(data => setX(data.getxy.item))
+        .then(data => setY(data.getxy.item))
+        .catch(err => console.log(err))
+    }
+
+    //일기예보 데이터 fetch
+    useEffect(() => {
+        let url = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?';
+        url = url + `serviceKey=${process.env.REACT_APP_APIKEY}`;
+        url = url + `&pageNo=1&numOfRows=1000&dataType=json`;
+
+        console.log(url)
+        getData(url) ;
+
+    }, []);
