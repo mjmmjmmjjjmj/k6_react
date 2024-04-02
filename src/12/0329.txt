@@ -1,0 +1,7 @@
+https://apis.data.go.kr/6260000/FestivalService/getFestivalKr?
+
+serviceKey=BEcw81HW35gqclGLtYE68GYmXOehsYW9sFMcaKxAV%2F4wNrDll5K8wHfPQpQUqfRBi9tOyeuTbZYh0K3JEcMzQA%3D%3D
+
+&pageNo=1&numOfRows=10&resultType=json
+
+`serviceKey=${process.env.REACT_APP_APIKEY}`;

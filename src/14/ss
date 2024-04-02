@@ -11,9 +11,93 @@
     useEffect(() => {
         let url = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?';
         url = url + `serviceKey=${process.env.REACT_APP_APIKEY}`;
-        url = url + `&pageNo=1&numOfRows=1000&dataType=json`;
+        url = url + `&pageNo=1&numOfRows=1000&dataType=json&base_date=${dt}&base_time=0630&nx=${x}&ny=${y}`;
 
         console.log(url)
         getData(url) ;
 
     }, []);
+
+
+    
+    //카드 데이터
+     const handleSel = () => {
+        console.log(sRef.current.value)
+        let tm = tdata.filter(item => item.GUGUN_NM === selRef.current.value)
+                          .map(item => <GGCard key = {item.예보구분}
+                                                  imgUrl = {item.MAIN_IMG_THUMB.replace('http://', 'https://')}
+                                                  title = {item.항목값}
+                                                  ptitle = {item.SUBTITLE}
+                                                  ktag = {item.TRFC_INFO} />)
+        setCardTags(tm);
+        console.log(tm)
+      }
+
+    //구 데이터 -> 날씨 데이터
+    useEffect(() => {
+        if (!guname) return;
+        console.log(guname)
+
+        let tm = guname.map(item => 
+          <option value = {item} key = {item}> 
+          {item}
+          </option>
+          )
+          tm = new Set(tm);
+          tm = [...tm].sort();
+          setOpTags(tm);    
+
+        // console.log(guname)
+    }, [guname])
+
+return(
+    <div className="w-full flex flex-col
+                justify-start items-center">
+<div className="w-11/12 relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    항목명
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    예측일자
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    예측시간
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Apple MacBook Pro 17"
+                </th>
+                <td className="px-6 py-4">
+                    Silver
+                </td>
+                <td className="px-6 py-4">
+                    Silver
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Microsoft Surface Pro
+                </th>
+                <td class="px-6 py-4">
+                    White
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Magic Mouse 2
+                </th>
+                <td class="px-6 py-4">
+                    Black
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+)

@@ -1,9 +1,11 @@
 import React from 'react'
 import TailSelect from '../UI2/TailSelect'
 import TailInput from '../UI2/TailInput'
-import { useState, useEffect, useRef } from 'react'
 import Tailbutton2 from '../UI2/Tailbutton2'
 import getxy from '../14/getxy.json'
+
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Frcst() {
   console.log(getxy)
@@ -11,44 +13,45 @@ export default function Frcst() {
 
   const[x, setX] = useState();
   const[y, setY] = useState();
+  const[dt, setDt] = useState();
+  const[area, setArea] = useState();
   
   const dRef = useRef();
   const sRef = useRef();
-  /////////////////////////
-   //실제 fetch
-   const getData = (url) => {
-    fetch(url)
-    .then(resp => resp.json())
-    .then(data => setX(data.getxy))
-    .then(data => setY(data.getxy))
-    .catch(err => console.log(err))
-}
 
-//일기예보 데이터 fetch
-useEffect(() => {
-    let url = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?';
-    url = url + `serviceKey=${process.env.REACT_APP_APIKEY}`;
-    url = url + `&pageNo=1&numOfRows=1000&dataType=json`;
-
-    console.log(url)
-    getData(url) ;
-
-}, []);
-//////////////////
   const handleDate = () => {
+    setDt(dRef.current.value.replaceAll('-', ''))
     console.log(dRef.current.value)
   }
-  const handleArea = () => {
-    let tm = getxy.filter(item => item['1단계'] === sRef.current.value);
 
+  const navigator = useNavigate();
+  const handleUltra = () => {
+    if ( dt === ''|| dt === undefined) {
+      alert('날짜를 선택하세요.');
+      dRef.current.focus();
+      return;
+    }
+    if(area === ''|| area === undefined) {
+      alert('지역을 선택하세요.');
+      sRef.current.focus();
+      return;
+    }
+    navigator (`/ultra/${dt}/${area}/${x}/${y}`)
+  }
+
+  const handleArea = () => {
+    if (sRef.current.value === '' || sRef.current.value=== undefined)
+    return;
+
+    let tm = getxy.filter(item => item['1단계'] === sRef.current.value);
+    setArea(sRef.current.value)
     setX(tm[0]["격자 X"]);
     setY(tm[0]["격자 Y"]);
   }
 
   useEffect(()=> {
-    console.log(x, y)
-  }, [x, y])
-
+    console.log(area, x, y)
+  }, [area, x, y])
 
   return (
     <div className='w-11/12 justify-start grid grid-cols-1 md:grid-cols-2 gap-2'>
@@ -66,7 +69,8 @@ useEffect(() => {
       </div>
       <div>
         <Tailbutton2 color = "blue"
-                    caption="초단기예보">         
+                    caption="초단기예보"
+                    handleClick={handleUltra}>         
         </Tailbutton2>
         </div>
         <div>
