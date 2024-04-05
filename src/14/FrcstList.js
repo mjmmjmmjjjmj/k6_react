@@ -1,16 +1,21 @@
-import { useParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 import { useState, useEffect, useRef } from "react";
 import TailSelect from "../UI2/TailSelect";
 import getcode from './getcode.json'
 
-export default function UltraFrcst() {
-    const dt = useParams().dt ;
-    const area = useParams().area ; 
-    const x = useParams().x ;
-    const y = useParams().y ;
 
-    const gubun = '초단기예보'
-    //select 박스 옵션
+
+export default function FrcstList() {
+    const [queryParams] = useSearchParams();
+    const dt = queryParams.get('dt') ;
+    const area = queryParams.get('area') ; 
+    const x = queryParams.get('x') ;
+    const y = queryParams.get('y') ;
+    const gubun = queryParams.get('gubun');
+
+    console.log(dt, area, x, y, gubun)
+
+ //select 박스 옵션
     const ops = getcode.filter(item => item["예보구분"] === gubun )
                         .map(item => `${item["항목명"]}(${item["항목값"]})`);
 
@@ -22,7 +27,7 @@ export default function UltraFrcst() {
     //화면에 표시되는 테이블 tr 저장
     const [trtags, setTrtags] = useState([]);
 
-    //select
+    //select 선택값
     const [selItem, setSelItem] = useState();
     const [selItemName, setSelItemName] = useState();
     
@@ -39,6 +44,7 @@ export default function UltraFrcst() {
         setSelItem(itemRef.current.value.split('(')[1].replace(')',''))
     }
 
+
     //fetch 함수
     const getData = async(url) => {
         const resp = await fetch(url)
@@ -48,10 +54,18 @@ export default function UltraFrcst() {
     }
     //데이터 가져오기
     useEffect(() => {
-        let url = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?';
+        let url;
+        if(gubun === '초단기예보') {
+        url = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?';
         url = url + `serviceKey=${process.env.REACT_APP_APIKEY}`;
         url = url + `&pageNo=1&numOfRows=1000&dataType=json&base_date=${dt}&base_time=0630&nx=${x}&ny=${y}`;
+    }
+    else {
+        url = 'https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?';
+    url = url + `serviceKey=${process.env.REACT_APP_APIKEY}`;
+    url = url + `&pageNo=1&numOfRows=1000&dataType=json&base_date=${dt}&base_time=0500&nx=${x}&ny=${y}`;
 
+    }
     console.log(url)
     //fetch 함수
     getData(url) ;
@@ -83,8 +97,6 @@ useEffect(() => {
             setTrtags(tm)
 }, [selItem])
 
-
-
   return (
     
 <div className="w-full h-full flex flex-col
@@ -104,7 +116,7 @@ useEffect(() => {
     </div>
     </div>
 
-    <table className="w-10/12 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <table className="m-5 w-10/12 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" className="px-6 py-3">

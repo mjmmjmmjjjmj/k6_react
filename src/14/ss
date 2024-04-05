@@ -18,6 +18,7 @@
 
     }, []);
 
+&pageNo=1&numOfRows=1000&dataType=json&base_date=20240405&base_time=0500&nx=55&ny=127
 
     
     //카드 데이터

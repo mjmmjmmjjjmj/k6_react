@@ -25,7 +25,7 @@ export default function Frcst() {
   }
 
   const navigator = useNavigate();
-  const handleUltra = () => {
+  const handleFrcst = (loc) => {
     if ( dt === ''|| dt === undefined) {
       alert('날짜를 선택하세요.');
       dRef.current.focus();
@@ -36,7 +36,13 @@ export default function Frcst() {
       sRef.current.focus();
       return;
     }
-    navigator (`/ultra/${dt}/${area}/${x}/${y}`)
+    // navigator (`/${loc}/${dt}/${area}/${x}/${y}`)
+
+    let gubun = '';
+    if(loc ==='ultra') {gubun = '초단기예보';}
+    else {gubun = '단기예보'};
+
+    navigator(`/flist?dt=${dt}&area=${area}&x=${x}&y=${y}&gubun=${gubun}`)
   }
 
   const handleArea = () => {
@@ -48,6 +54,7 @@ export default function Frcst() {
     setX(tm[0]["격자 X"]);
     setY(tm[0]["격자 Y"]);
   }
+
 
   useEffect(()=> {
     console.log(area, x, y)
@@ -70,12 +77,13 @@ export default function Frcst() {
       <div>
         <Tailbutton2 color = "blue"
                     caption="초단기예보"
-                    handleClick={handleUltra}>         
+                    handleClick={ ()=>{handleFrcst('ultra')} }>
         </Tailbutton2>
         </div>
         <div>
         <Tailbutton2 color = "blue"
-                      caption="단기예보">
+                      caption="단기예보"
+                      handleClick= {()=>{handleFrcst('village')}}>
         </Tailbutton2>
       </div>
     </div>
