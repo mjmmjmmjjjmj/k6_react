@@ -21,7 +21,9 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Frcst from './14/Frcst';
 import UltraFrcst from './14/UltraFrcst';
 import VillageFrcst from './14/VillageFrcst';
-
+import FrcstList from './14/FrcstList';
+// import Recoil1 from './15/Recoil1';
+import RecoilMain from './15/RecoilMain';
 
 
 function App() {
@@ -79,6 +81,11 @@ function App() {
                         hover:bg-blue-900 hover:text-white'>
             <Link to='/frcst'>예보</Link>
           </div>
+
+          <div className='mx-5 p-2 rounded-md 
+                        hover:bg-blue-900 hover:text-white'>
+            <Link to='/recoilmain'>RecoilMain</Link>
+          </div>
             
 
         <div className='text-2xl'> <Link to='/clockforHome' ><FaHome /></Link></div>
@@ -97,8 +104,10 @@ function App() {
         <Route path='/traffic' element={<TrafficMain />} />
         <Route path='/festival' element={<Festival />} />
         <Route path='/frcst' element={<Frcst />} />
-        <Route path='/ultra/:dt/:area/:x/:y' element={<UltraFrcst />} />
-        <Route path='/village/:dt/:area/:x/:y' element={<VillageFrcst />} />
+        {/* <Route path='/ultra/:dt/:area/:x/:y' element={<UltraFrcst />} /> */}
+        {/* <Route path='/village/:dt/:area/:x/:y' element={<VillageFrcst />} /> */}
+        <Route path='/flist' element = {<FrcstList/>} />
+        <Route path='/recoilmain' element = {<RecoilMain/>} />
         {/* <Route path='/' element={<Lotto2/>}> */}
         {/* <HelloCss /> */}
         {/* <Hello/> */}
